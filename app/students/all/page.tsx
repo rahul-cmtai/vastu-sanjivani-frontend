@@ -136,11 +136,18 @@ const courses = [...new Set(allStudents.flatMap(student => student.courses))].so
 const locations = [...new Set(allStudents.map(student => student.location))].sort();
 const badges = [...new Set(allStudents.flatMap(student => student.badges))].sort();
 
+type Filters = {
+  specializations: string[];
+  courses: string[];
+  locations: string[];
+  badges: string[];
+};
+
 export default function AllStudents() {
   const [students, setStudents] = useState(allStudents);
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     specializations: [],
     courses: [],
     locations: [],
@@ -190,7 +197,7 @@ export default function AllStudents() {
     setStudents(filteredStudents);
   }, [searchTerm, filters]);
 
-  const toggleFilter = (category, value) => {
+  const toggleFilter = (category: keyof Filters, value: string) => {
     setFilters(prevFilters => {
       const currentFilters = [...prevFilters[category]];
       
