@@ -2,6 +2,22 @@
   "name": "next-app",
   "version": "0.1.0",
   "private": true,
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped without the `src` directory.",
+  "homepage": "https://github.com/rahul-cmtai/vastu-sanjivani-frontend#readme",
+  "bugs": {
+    "url": "https://github.com/rahul-cmtai/vastu-sanjivani-frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahul-cmtai/vastu-sanjivani-frontend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "next.config.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
