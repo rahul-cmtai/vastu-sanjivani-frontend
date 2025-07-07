@@ -76,14 +76,18 @@ export async function POST(req: NextRequest) {
       to: [process.env.SMTP_TO || 'mail@vaastusanjivanii.com', email], // send to admin and user
       subject: `Vastu Questionnaire Result - ${name || 'Anonymous'}`,
       html: `
-        <h2>Vastu Questionnaire Submission</h2>
+        <h2>🚨 Vastu Score: ${grade} – Immediate Attention Needed</h2>
+        <p>Your space is critically misaligned with Vastu principles, which may be directly causing repeated problems — like loss, conflict, health issues, or stagnation.</p>
+        <p>But don't worry — we specialize in 100% non-demolition remedies to correct even deep-rooted imbalances.</p>
+        <p>🌿 Your life can shift for the better with the right guidance.<br/>
+        Let us help you transform your home into a space of support and success.</p>
+        <p>📞 Reply here or message us at <b>9910558589</b> to book your urgent consultation.</p>
+        <hr/>
         <p><b>Name:</b> ${name || 'N/A'}</p>
         <p><b>Email:</b> ${email || 'N/A'}</p>
         <p><b>Phone:</b> ${phone || 'N/A'}</p>
         <p><b>Score:</b> ${scorePercent}%</p>
         <p><b>Grade:</b> ${grade}</p>
-        <h3>Answers:</h3>
-        <div>${answerList}</div>
       `,
     };
 

@@ -451,6 +451,36 @@ export default function Testimonials() {
         </div>
       </section>
 
+      {/* Custom YouTube Video Testimonial Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#7a2323] mb-4">
+              Featured Video Testimonial
+            </h2>
+            <div className="h-1 w-20 bg-[#7a2323]/60 mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-xl mx-auto">
+              Hear directly from our clients about their life-changing experiences with Vastu Sanjivanii.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-lg">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/TxRGx_1C6vk?si=4vjhlrlSyPXx99Nv" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Student Testimonials Section */}
       <section className="py-20 bg-gradient-to-br from-[#f8f8f8] to-[#f0f0f0]">
         <div className="container mx-auto px-4">
