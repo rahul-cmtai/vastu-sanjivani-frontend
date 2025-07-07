@@ -13,7 +13,7 @@ import {
   BookOpen,
   Award
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 // Animation variants
@@ -140,10 +140,7 @@ const studentTestimonials = [
 
 export default function Testimonials() {
   const [activeClientTestimonialIndex, setActiveClientTestimonialIndex] = useState(0);
-  const [activeStudentPage, setActiveStudentPage] = useState(0);
-  
-  const studentsPerPage = 3;
-  const totalStudentPages = Math.ceil(studentTestimonials.length / studentsPerPage);
+  const [pauseAutoScroll, setPauseAutoScroll] = useState(false);
   
   const handlePrevClient = () => {
     setActiveClientTestimonialIndex(prev => 
@@ -156,11 +153,45 @@ export default function Testimonials() {
       prev === clientTestimonials.length - 1 ? 0 : prev + 1
     );
   };
+
+  // Auto-scroll effect for student testimonials
+  useEffect(() => {
+    if (pauseAutoScroll) return;
+    
+    const interval = setInterval(() => {
+      const container = document.getElementById('student-testimonials-container');
+      if (container) {
+        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
+          // Reset scroll position when reaching the end
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Scroll to next item
+          container.scrollBy({ left: 320, behavior: 'smooth' });
+        }
+      }
+    }, 5000); // Scroll every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [pauseAutoScroll]);
   
-  const currentStudentTestimonials = studentTestimonials.slice(
-    activeStudentPage * studentsPerPage, 
-    (activeStudentPage + 1) * studentsPerPage
-  );
+  // Add CSS to hide scrollbars
+  useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    `;
+    document.head.appendChild(styleSheet);
+    
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
 
   return (
     <main className="bg-gray-50 min-h-screen">
@@ -439,79 +470,143 @@ export default function Testimonials() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-          >
-            {currentStudentTestimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.id}
-                variants={fadeIn}
-                className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:-translate-y-2 hover:shadow-xl"
-              >
-                <div className="h-48 relative">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                    <div className="p-6 text-white">
-                      <h3 className="text-xl font-bold">{testimonial.name}</h3>
-                      <p className="flex items-center">
-                        <GraduationCap className="h-4 w-4 mr-2" />
-                        {testimonial.course}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-gray-700 mb-4 line-clamp-4">
-                    "{testimonial.content}"
-                  </p>
-                  
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 text-sm flex items-center">
-                      <Award className="h-4 w-4 mr-1" /> Certified Student
-                    </span>
-                    <span className="text-gray-500 text-sm">{testimonial.location}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          {/* Pagination */}
-          {totalStudentPages > 1 && (
-            <div className="flex justify-center mt-12">
-              <div className="flex gap-2">
-                {[...Array(totalStudentPages)].map((_, index) => (
-                  <button 
-                    key={index}
-                    onClick={() => setActiveStudentPage(index)}
-                    className={`h-10 w-10 rounded-full flex items-center justify-center transition-colors ${
-                      index === activeStudentPage 
-                        ? "bg-[#7a2323] text-white" 
-                        : "bg-white text-[#7a2323] hover:bg-gray-100"
-                    }`}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Left fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#f8f8f8] to-transparent z-10"></div>
+            
+            {/* Right fade effect */}
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#f8f8f8] to-transparent z-10"></div>
+            
+            {/* Carousel container */}
+            <div 
+              id="student-testimonials-container"
+              className="flex overflow-x-auto pb-6 hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onMouseEnter={() => setPauseAutoScroll(true)}
+              onMouseLeave={() => setPauseAutoScroll(false)}
+            >
+              <div className="flex gap-6 pl-4">
+                {studentTestimonials.map((testimonial) => (
+                  <motion.div
+                    key={testimonial.id}
+                    variants={fadeIn}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden min-w-[300px] max-w-[300px] flex-shrink-0 transform transition-all hover:-translate-y-2 hover:shadow-xl"
                   >
-                    {index + 1}
-                  </button>
+                    <div className="h-48 relative">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                        <div className="p-6 text-white">
+                          <h3 className="text-xl font-bold">{testimonial.name}</h3>
+                          <p className="flex items-center">
+                            <GraduationCap className="h-4 w-4 mr-2" />
+                            {testimonial.course}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      
+                      <p className="text-gray-700 mb-4 line-clamp-4">
+                        "{testimonial.content}"
+                      </p>
+                      
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-500 text-sm flex items-center">
+                          <Award className="h-4 w-4 mr-1" /> Certified Student
+                        </span>
+                        <span className="text-gray-500 text-sm">{testimonial.location}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+                
+                {/* Duplicate the first few items for seamless looping */}
+                {studentTestimonials.slice(0, 3).map((testimonial) => (
+                  <motion.div
+                    key={`duplicate-${testimonial.id}`}
+                    variants={fadeIn}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden min-w-[300px] max-w-[300px] flex-shrink-0 transform transition-all hover:-translate-y-2 hover:shadow-xl"
+                  >
+                    <div className="h-48 relative">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                        <div className="p-6 text-white">
+                          <h3 className="text-xl font-bold">{testimonial.name}</h3>
+                          <p className="flex items-center">
+                            <GraduationCap className="h-4 w-4 mr-2" />
+                            {testimonial.course}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      
+                      <p className="text-gray-700 mb-4 line-clamp-4">
+                        "{testimonial.content}"
+                      </p>
+                      
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-500 text-sm flex items-center">
+                          <Award className="h-4 w-4 mr-1" /> Certified Student
+                        </span>
+                        <span className="text-gray-500 text-sm">{testimonial.location}</span>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          )}
+            
+            {/* Manual navigation indicators */}
+            <div className="flex justify-center mt-6">
+              <div className="flex gap-2">
+                {studentTestimonials.map((_, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => {
+                      const container = document.getElementById('student-testimonials-container');
+                      if (container) {
+                        container.scrollTo({ 
+                          left: index * 320, 
+                          behavior: 'smooth' 
+                        });
+                      }
+                    }}
+                    className="h-3 w-3 rounded-full bg-gray-300 hover:bg-[#7a2323] transition-colors"
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
           
           <div className="text-center mt-12">
             <Button className="bg-[#7a2323] hover:bg-[#5a1a1a]">

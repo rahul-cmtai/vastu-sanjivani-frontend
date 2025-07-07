@@ -215,6 +215,10 @@ export function Navbar() {
               <span>Testimonials</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
             </Link>
+            <Link href="/students" className="text-sm font-medium text-white hover:text-yellow-300 transition-colors relative group">
+              <span>Students</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
+            </Link>
             <Link href="/contact" className="text-sm font-medium text-white hover:text-yellow-300 transition-colors relative group">
               <span>Contact</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
@@ -353,6 +357,13 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             Testimonials
+          </Link>
+          <Link 
+            href="/students" 
+            className="block py-3 text-white font-medium hover:text-yellow-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Students
           </Link>
           <Link 
             href="/contact" 

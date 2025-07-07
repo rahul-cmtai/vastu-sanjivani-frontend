@@ -19,6 +19,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'picsum.photos',
       },
+      {
+        protocol: 'https',
+        hostname: 'vastu-sanjevani.s3.ap-south-1.amazonaws.com',
+      },
     ],
   },
   eslint: {
@@ -29,4 +33,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig;

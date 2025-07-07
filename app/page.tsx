@@ -5,6 +5,8 @@ import { motion, useMotionValue, useSpring, Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { TestimonialsMarquee } from "@/components/testimonials";
 import { Hero } from "@/components/hero";
+import { VastuQuestionnaire } from "@/components/Questionnaire";
+import Link from "next/link";
 
 // Animation variants
 const fadeIn: Variants = {
@@ -90,9 +92,48 @@ export default function Home() {
           style={{ x: "-50%", y: "-50%" }}
         />
       </motion.div>
-      
       {/* Hero Section */}
       <Hero />
+      {/* Tagline Section */}
+      <div className="container mx-auto px-4 mt-8">
+        <Link href="/questionnaire" className="block group">
+          <div
+            className="relative rounded-3xl py-8 px-4 md:px-0 text-center mb-4 overflow-hidden shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl animate-pulse"
+            style={{
+              background: "linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%)",
+              boxShadow: "0 0 40px 0 rgba(255, 140, 0, 0.2)",
+            }}
+          >
+            {/* Glowing animated border */}
+            <span className="absolute inset-0 rounded-3xl border-4 border-yellow-400 opacity-60 animate-glow pointer-events-none" />
+            <span className="relative flex items-center justify-center gap-3">
+              <span className="text-3xl md:text-4xl">🏠</span>
+              <span className="text-2xl md:text-3xl font-bold text-[#7a2323] drop-shadow-lg ">
+                Is Your House Vastu Friendly? Check Yourself!
+              </span>
+              <span className="text-3xl md:text-4xl">✅</span>
+            </span>
+          </div>
+        </Link>
+      </div>
+      <style jsx global>{`
+        @keyframes glow {
+          0% { box-shadow: 0 0 20px 5px #ffe066, 0 0 40px 10px #ffb347; }
+          50% { box-shadow: 0 0 40px 15px #ffe066, 0 0 60px 20px #ffb347; }
+          100% { box-shadow: 0 0 20px 5px #ffe066, 0 0 40px 10px #ffb347; }
+        }
+        .animate-glow {
+          animation: glow 2s infinite alternate;
+        }
+        @keyframes text-pop {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.07); }
+          100% { transform: scale(1); }
+        }
+        .animate-text-pop {
+          animation: text-pop 1.5s infinite;
+        }
+      `}</style>
 
       {/* About Section */}
       <motion.section
@@ -109,13 +150,90 @@ export default function Home() {
             </h2>
             <motion.p 
               variants={fadeIn}
-              className="text-gray-700 leading-relaxed"
+              className="text-gray-700 leading-relaxed mb-8"
             >
               Vaastu Sanjivanii is a science of building construction and balancing of energies in it. It aligns the energies of a building with nature to ensure healthy, wealthy and prosperous life. Whether the objective is to improve love life & relationships, education, health, job and finance, or simply to experience greater level of tranquility, Vaastu Sanjivanii helps you to make it happen.
             </motion.p>
           </div>
         </div>
       </motion.section>
+
+      {/* Vastu, Astrology, Numerology Cards Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Vastu Shastra Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ scale: 1.04, rotate: -2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+            >
+              <motion.img 
+                src="https://images.unsplash.com/photo-1637808248153-59a2e0fbd01f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Vastu Shastra" 
+                className="w-full h-40 object-cover rounded-md mb-6 bg-yellow-200"
+                style={{objectFit: 'cover'}}
+                initial={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              />
+              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Vastu Shastra</h3>
+              <p className="text-gray-600 text-center">
+                Vaastu Shastra is the science of constructing a building in such a way that helps the occupants achieve their desired results and targets
+              </p>
+            </motion.div>
+            {/* Astrology Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ scale: 1.04, rotate: 2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+            >
+              <motion.img 
+                src="https://images.unsplash.com/photo-1657904906400-5eebf3233633?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGFzdHJvbG9neXxlbnwwfHwwfHx8MA%3D%3D" 
+                alt="Astrology" 
+                className="w-full h-40 object-cover rounded-md mb-6"
+                style={{objectFit: 'cover'}}
+                initial={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              />
+              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Astrology</h3>
+              <p className="text-gray-600 text-center">
+                Astrology is the science of stars and planets and these stars and planets concern us in a meticulous way at every moment.
+              </p>
+            </motion.div>
+            {/* Numerology Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ scale: 1.04, rotate: -1.5, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+            >
+              <motion.img 
+                src="https://plus.unsplash.com/premium_photo-1699967437640-17ec76db90d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Numerology" 
+                className="w-full h-40 object-cover rounded-md mb-6"
+                style={{objectFit: 'cover'}}
+                initial={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              />
+              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Numerology</h3>
+              <p className="text-gray-600 text-center">
+                Numerology is the game of Numbers which has great impact on our lives. Each number is connected with a planet and gives...
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <motion.section 
