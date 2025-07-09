@@ -4,13 +4,12 @@ import { motion, Variants } from "framer-motion"
 import { useState, useEffect } from "react"
 
 export function Hero() {
-  // Images for the carousel - updated with working astrology and vastu related images from Unsplash
+  // Images for the carousel - now using local images from public/images/home
   const images = [
-    "https://images.unsplash.com/photo-1583336663277-620dc1996580?q=80&w=1000&auto=format&fit=crop", // Astrology chart
-    "https://images.unsplash.com/photo-1507561880929-0169a5ab1515?q=80&w=1000&auto=format&fit=crop", // Crystal and moon
-    "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop", // Zen garden and balance
-    "https://images.unsplash.com/photo-1515942400420-2b98fed1f515?q=80&w=1000&auto=format&fit=crop", // Moon phases
-    "https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1000&auto=format&fit=crop"  // Spiritual home space
+    "/images/home/1.png",
+    "/images/home/2.png",
+    "/images/home/3.png",
+    "/images/home/4.png"
   ];
 
   // State for the carousel

@@ -468,8 +468,8 @@ export default function Testimonials() {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/TxRGx_1C6vk?si=4vjhlrlSyPXx99Nv" 
-                title="YouTube video player" 
+                src="https://www.youtube.com/embed/videoseries?list=PLG7nWCt69RhI3_B_0y1WeyqDVsZUk6VAm" 
+                title="YouTube playlist player" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="strict-origin-when-cross-origin" 
@@ -568,7 +568,7 @@ export default function Testimonials() {
                 {studentTestimonials.slice(0, 3).map((testimonial) => (
                   <motion.div
                     key={`duplicate-${testimonial.id}`}
-                    variants={fadeIn}
+                    variants={fadeIn} 
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}

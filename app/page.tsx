@@ -7,6 +7,9 @@ import { TestimonialsMarquee } from "@/components/testimonials";
 import { Hero } from "@/components/hero";
 import { VastuQuestionnaire } from "@/components/Questionnaire";
 import Link from "next/link";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { OurProcess } from "@/components/OurProcess";
+import { FeaturedCourses } from "@/components/FeaturedCourses";
 
 // Animation variants
 const fadeIn: Variants = {
@@ -158,6 +161,8 @@ export default function Home() {
         </div>
       </motion.section>
 
+     
+
       {/* Vastu, Astrology, Numerology Cards Section */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -172,9 +177,9 @@ export default function Home() {
               className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
             >
               <motion.img 
-                src="https://images.unsplash.com/photo-1637808248153-59a2e0fbd01f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                src="/images/home/vastu.png" 
                 alt="Vastu Shastra" 
-                className="w-full h-40 object-cover rounded-md mb-6 bg-yellow-200"
+                className="w-full h-60 object-cover rounded-md mb-6 bg-yellow-200"
                 style={{objectFit: 'cover'}}
                 initial={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
@@ -195,9 +200,9 @@ export default function Home() {
               className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
             >
               <motion.img 
-                src="https://images.unsplash.com/photo-1657904906400-5eebf3233633?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGFzdHJvbG9neXxlbnwwfHwwfHx8MA%3D%3D" 
+                src="/images/home/astrology.png" 
                 alt="Astrology" 
-                className="w-full h-40 object-cover rounded-md mb-6"
+                className="w-full h-60 object-cover rounded-md mb-6"
                 style={{objectFit: 'cover'}}
                 initial={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
@@ -218,9 +223,9 @@ export default function Home() {
               className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
             >
               <motion.img 
-                src="https://plus.unsplash.com/premium_photo-1699967437640-17ec76db90d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                src="/images/home/numerology.png" 
                 alt="Numerology" 
-                className="w-full h-40 object-cover rounded-md mb-6"
+                className="w-full h-60 object-cover rounded-md mb-6"
                 style={{objectFit: 'cover'}}
                 initial={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
@@ -234,7 +239,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+ {/* Why Choose Us Section */}
+ <WhyChooseUs />
 
+ 
       {/* Services Section */}
       <motion.section 
         className="py-20 bg-gray-50"
@@ -288,6 +296,12 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
+
+      {/* Our Process Section */}
+      <OurProcess />
+
+      {/* Featured Courses Section */}
+      <FeaturedCourses />
 
       {/* New Testimonials Section */}
       <TestimonialsMarquee />
