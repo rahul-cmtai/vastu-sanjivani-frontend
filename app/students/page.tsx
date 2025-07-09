@@ -42,7 +42,9 @@ export default function Students() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/students")
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    console.log('API URL (students list):', apiUrl);
+    fetch(`${apiUrl}/api/students`)
       .then(res => res.json())
       .then(data => {
         setStudents(data.data || []);

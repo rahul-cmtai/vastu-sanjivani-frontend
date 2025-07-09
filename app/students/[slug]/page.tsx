@@ -95,7 +95,9 @@ export default function StudentPage({ params }: { params: Promise<{ slug: string
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch(`http://localhost:5000/api/students/slug/${slug}`)
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    console.log('API URL (student detail):', apiUrl);
+    fetch(`${apiUrl}/api/students/slug/${slug}`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
