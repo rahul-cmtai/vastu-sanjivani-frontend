@@ -390,17 +390,17 @@ export default function Footer() {
               Harmonizing spaces and transforming lives through ancient Vastu Shastra principles applied scientifically without structural demolition.
             </p>
             <div className="flex space-x-4 mt-6">
-              <Link href="#" className="text-white/60 hover:text-white transition-colors">
+              <Link href="https://www.youtube.com/neenasarora" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" aria-label="YouTube">
+                <Youtube size={20} />
+              </Link>
+              <Link href="https://www.facebook.com/Neenaarora03/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </Link>
-              <Link href="#" className="text-white/60 hover:text-white transition-colors">
+              <Link href="https://www.instagram.com/vastu_acharya_neenasarora" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </Link>
-              <Link href="#" className="text-white/60 hover:text-white transition-colors">
-                <Twitter size={20} />
-              </Link>
-              <Link href="#" className="text-white/60 hover:text-white transition-colors">
-                <Youtube size={20} />
+              <Link href="https://www.vaastusanjivanii.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" aria-label="Website">
+                <span className="font-bold text-lg">W</span>
               </Link>
             </div>
           </div>
@@ -429,7 +429,8 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4 text-white">Contact Us</h3>
             <div className="space-y-3">
               <p className="flex items-center text-white/70">
-                <Phone size={16} className="mr-2" /> +91-98XXX-XXXXX
+                <Phone size={16} className="mr-2" />
+                <a href="tel:9910558589" className="hover:underline">+91 9910558589</a>
               </p>
               <p className="flex items-center text-white/70">
                 <Mail size={16} className="mr-2" /> info@vaastusanjivanii.com
