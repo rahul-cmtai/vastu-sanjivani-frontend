@@ -147,8 +147,10 @@ export default function EffectiveParentingThroughVastu() {
               <div className="text-gray-500 text-lg line-through mr-3">{course.regularPrice}</div>
               <div className="text-2xl md:text-3xl font-bold">{course.price}</div>
             </div>
-            <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] text-lg px-8 py-4">
-              Enroll Now
+            <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] text-lg px-8 py-4" asChild>
+              <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer">
+                Enroll Now
+              </a>
             </Button>
           </div>
         </div>
@@ -174,41 +176,24 @@ export default function EffectiveParentingThroughVastu() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-lg transition-all"
               >
-                <div className="h-48 overflow-hidden relative">
-                  <img 
-                    src={module.image} 
-                    alt={module.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
-                    <Button 
-                      variant="outline" 
-                      className="bg-white/20 backdrop-blur-sm border-white text-white hover:bg-white hover:text-[#7a2323]"
-                      onClick={() => {
-                        setSelectedModule(index);
-                        setActiveTab("curriculum");
-                      }}
-                    >
-                      View Details
-                    </Button>
+                <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <div className="p-5">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 line-clamp-2">{module.title}</h3>
+                    <ul className="space-y-2">
+                      {module.content.slice(0, 2).map((item, i) => (
+                        <li key={i} className="flex items-start text-sm text-gray-600">
+                          <Check className="h-4 w-4 text-[#7a2323] mr-2 mt-0.5 shrink-0" />
+                          <span className="line-clamp-1">{item}</span>
+                        </li>
+                      ))}
+                      {module.content.length > 2 && (
+                        <li className="text-xs text-gray-500 italic">
+                          + {module.content.length - 2} more topics
+                        </li>
+                      )}
+                    </ul>
                   </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 mb-4 line-clamp-2">{module.title}</h3>
-                  <ul className="space-y-2">
-                    {module.content.slice(0, 2).map((item, i) => (
-                      <li key={i} className="flex items-start text-sm text-gray-600">
-                        <Check className="h-4 w-4 text-[#7a2323] mr-2 mt-0.5 shrink-0" />
-                        <span className="line-clamp-1">{item}</span>
-                      </li>
-                    ))}
-                    {module.content.length > 2 && (
-                      <li className="text-xs text-gray-500 italic">
-                        + {module.content.length - 2} more topics
-                      </li>
-                    )}
-                  </ul>
-                </div>
+                </a>
               </motion.div>
             ))}
           </div>
@@ -219,8 +204,10 @@ export default function EffectiveParentingThroughVastu() {
               <div className="text-2xl font-bold line-through text-red-600">{course.regularPrice}</div>
             </div>
             <h3 className="text-2xl font-bold mb-6">Limited Time Special Offer: {course.price}</h3>
-            <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] text-lg px-8 py-6">
-              Enroll in Masterclass Now
+            <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] text-lg px-8 py-6" asChild>
+              <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer">
+                Enroll in Masterclass Now
+              </a>
             </Button>
           </div>
         </div>
@@ -309,9 +296,11 @@ export default function EffectiveParentingThroughVastu() {
                 <div className="text-center">
                   <Button 
                     className="bg-[#7a2323] hover:bg-[#5a1a1a] text-lg px-10 py-6"
-                    onClick={() => setActiveTab("curriculum")}
+                    asChild
                   >
-                    View Masterclass Curriculum <ChevronRight className="ml-2" />
+                    <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer">
+                      View Masterclass Curriculum <ChevronRight className="ml-2" />
+                    </a>
                   </Button>
                 </div>
               </motion.div>
@@ -430,8 +419,10 @@ export default function EffectiveParentingThroughVastu() {
               <div className="text-sm text-white/60 line-through mb-1">Regular Price: {course.regularPrice}</div>
               <div className="text-3xl font-bold">Special Offer: {course.price}</div>
             </div>
-            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-lg px-12 py-7">
-              Enroll Now
+            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-lg px-12 py-7" asChild>
+              <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer">
+                Enroll Now
+              </a>
             </Button>
             <p className="mt-4 text-sm text-white/70">Limited time offer. Lifetime access to the masterclass.</p>
           </motion.div>

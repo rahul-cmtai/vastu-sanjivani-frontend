@@ -63,6 +63,19 @@ const questions = [
 // Options for each question
 const options = ["Yes", "No", "Not Applicable"];
 
+// Helper: which questions are optional (by index)
+const optionalIndices = questions
+  .map((q, i) => q.toLowerCase().includes("optional") ? i : -1)
+  .filter(i => i !== -1);
+
+// Helper: scoring map
+const answerToPoint = (answer: string) => {
+  // Accept synonyms for future extensibility
+  if (["no", "rarely", "sometimes", "occasionally"].includes(answer.toLowerCase())) return 1;
+  if (["yes", "frequently"].includes(answer.toLowerCase())) return 0;
+  return null; // Not Applicable or skipped
+};
+
 export function VastuQuestionnaire() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
@@ -107,80 +120,86 @@ export function VastuQuestionnaire() {
   // Calculate completion percentage
   const completionPercentage = Math.floor((Object.keys(answers).length / questions.length) * 100);
 
-  // Vastu grading logic
+  // Vastu grading logic (NEW)
   function getVastuGradeAndMessage() {
-    const answered = Object.values(answers).filter(ans => ans !== "Not Applicable");
-    const yesCount = answered.filter(ans => ans === "Yes").length;
-    const yesPercent = answered.length === 0 ? 0 : (yesCount / answered.length) * 100;
+    // Only count answered, non-skipped, non-optional questions
+    const answeredEntries = Object.entries(answers).filter(([idx, ans]) => {
+      const i = Number(idx);
+      // If optional and skipped, ignore
+      if (optionalIndices.includes(i) && (!ans || ans === "Not Applicable")) return false;
+      // If not answered at all, ignore
+      if (!ans || ans === "Not Applicable") return false;
+      return true;
+    });
+    const totalAnswered = answeredEntries.length;
+    const userScore = answeredEntries.reduce((acc, [_, ans]) => acc + (answerToPoint(ans) === 1 ? 1 : 0), 0);
+    const scorePercent = totalAnswered === 0 ? 0 : Math.round((userScore / totalAnswered) * 100);
 
-    if (yesPercent <= 5) {
-      return {
-        grade: "A+",
-        message: (
-          <>
-            <div className="text-3xl mb-2">🌟 Vastu Score: A+</div>
-            <div>Your home is aligned with strong Vastu energies! That's a wonderful sign for health, harmony, and growth. 🌼<br/><br/>
-            Still, energy maintenance is key — just like health checkups.<br/>
-            ✨ You may consider a brief consultation to fine-tune and amplify positivity even more.<br/><br/>
-            📍We offer non-demolition Vastu solutions for long-term harmony.<br/>
-            📲 Reply here or WhatsApp <b>9910558589</b> to explore your options.</div>
-          </>
-        )
-      };
-    } else if (yesPercent <= 15) {
-      return {
-        grade: "A",
-        message: (
-          <>
-            <div className="text-3xl mb-2">🔷 Vastu Score: A</div>
-            <div>Your home has good energy, but a few zones may need balancing. These small imbalances can affect emotional well-being, clarity, or career momentum.<br/><br/>
-            🌿 A personalized Vastu consultation can help remove subtle blocks and support faster progress — without any structural changes.<br/><br/>
-            📲 Let's take it to the next level. WhatsApp us at <b>9910558589</b> to book your session.</div>
-          </>
-        )
-      };
-    } else if (yesPercent <= 30) {
-      return {
-        grade: "B",
-        message: (
-          <>
-            <div className="text-3xl mb-2">🟠 Vastu Score: B</div>
-            <div>There are noticeable imbalances in your space that could be silently impacting areas like health, relationships, or finances.<br/><br/>
-            But don't worry — timely correction with non-demolition remedies can bring things back on track. ✨<br/><br/>
-            🔍 A detailed consultation will uncover the root cause and provide you with easy, effective Vastu solutions.<br/><br/>
-            📲 WhatsApp us at <b>9910558589</b> to schedule your consultation and start your healing journey.</div>
-          </>
-        )
-      };
-    } else if (yesPercent <= 50) {
-      return {
-        grade: "C",
-        message: (
-          <>
-            <div className="text-3xl mb-2">🔴 Vastu Score: C</div>
-            <div>Your home is showing major Vastu imbalances that might be directly linked to ongoing challenges in life — be it physical, emotional, or financial.<br/><br/>
-            But here's the good news: We can fix it — without demolition.<br/>
-            🌿 Our remedies are simple yet powerful, rooted in authentic Vastu.<br/><br/>
-            This is the right time to act before things spiral further.<br/><br/>
-            📲 Message us on <b>9910558589</b> to get started with your personalized consultation.</div>
-          </>
-        )
-      };
-    } else {
-      return {
-        grade: "D",
-        message: (
-          <>
-            <div className="text-3xl mb-2">🚨 Vastu Score: D – Immediate Attention Needed</div>
-            <div>Your space is critically misaligned with Vastu principles, which may be directly causing repeated problems — like loss, conflict, health issues, or stagnation.<br/><br/>
-            But don't worry — we specialize in 100% non-demolition remedies to correct even deep-rooted imbalances.<br/><br/>
-            🌿 Your life can shift for the better with the right guidance.<br/>
-            Let us help you transform your home into a space of support and success.<br/><br/>
-            📲 Reply here or message us at <b>9910558589</b> to book your urgent consultation.</div>
-          </>
-        )
-      };
+    // Grade mapping
+    let grade = "D";
+    let interpretation = (
+      <>
+        <div className="text-3xl mb-2">🚨 Vastu Score: D – Immediate Attention Needed</div>
+        <div>Your space is critically misaligned with Vastu principles, which may be directly causing repeated problems — like loss, conflict, health issues, or stagnation.<br/><br/>
+        But don't worry — we specialize in 100% non-demolition remedies to correct even deep-rooted imbalances.<br/><br/>
+        🌿 Your life can shift for the better with the right guidance.<br/>
+        Let us help you transform your home into a space of support and success.<br/><br/>
+        📲 Reply here or message us at <b>9910558589</b> to book your urgent consultation.</div>
+      </>
+    );
+    if (scorePercent >= 90) {
+      grade = "A+";
+      interpretation = (
+        <>
+          <div className="text-3xl mb-2">🌟 Vastu Score: A+</div>
+          <div>Your home is aligned with strong Vastu energies! That's a wonderful sign for health, harmony, and growth. 🌼<br/><br/>
+          Still, energy maintenance is key — just like health checkups.<br/>
+          ✨ You may consider a brief consultation to fine-tune and amplify positivity even more.<br/><br/>
+          📍We offer non-demolition Vastu solutions for long-term harmony.<br/>
+          📲 Reply here or WhatsApp <b>9910558589</b> to explore your options.</div>
+        </>
+      );
+    } else if (scorePercent >= 80) {
+      grade = "A";
+      interpretation = (
+        <>
+          <div className="text-3xl mb-2">🔷 Vastu Score: A</div>
+          <div>Your home has good energy, but a few zones may need balancing. These small imbalances can affect emotional well-being, clarity, or career momentum.<br/><br/>
+          🌿 A personalized Vastu consultation can help remove subtle blocks and support faster progress — without any structural changes.<br/><br/>
+          📲 Let's take it to the next level. WhatsApp us at <b>9910558589</b> to book your session.</div>
+        </>
+      );
+    } else if (scorePercent >= 60) {
+      grade = "B";
+      interpretation = (
+        <>
+          <div className="text-3xl mb-2">🟠 Vastu Score: B</div>
+          <div>There are noticeable imbalances in your space that could be silently impacting areas like health, relationships, or finances.<br/><br/>
+          But don't worry — timely correction with non-demolition remedies can bring things back on track. ✨<br/><br/>
+          🔍 A detailed consultation will uncover the root cause and provide you with easy, effective Vastu solutions.<br/><br/>
+          📲 WhatsApp us at <b>9910558589</b> to schedule your consultation and start your healing journey.</div>
+        </>
+      );
+    } else if (scorePercent >= 40) {
+      grade = "C";
+      interpretation = (
+        <>
+          <div className="text-3xl mb-2">🔴 Vastu Score: C</div>
+          <div>Your home is showing major Vastu imbalances that might be directly linked to ongoing challenges in life — be it physical, emotional, or financial.<br/><br/>
+          But here's the good news: We can fix it — without demolition.<br/>
+          🌿 Our remedies are simple yet powerful, rooted in authentic Vastu.<br/><br/>
+          This is the right time to act before things spiral further.<br/><br/>
+          📲 Message us on <b>9910558589</b> to get started with your personalized consultation.</div>
+        </>
+      );
     }
+    return {
+      grade,
+      scorePercent,
+      userScore,
+      totalAnswered,
+      interpretation
+    };
   }
 
   // Send email with results
@@ -377,12 +396,19 @@ export function VastuQuestionnaire() {
             {/* Vastu Grade and Message */}
             <div className="mb-8">
               {(() => {
-                const { grade, message } = getVastuGradeAndMessage();
+                const { grade, scorePercent, userScore, totalAnswered, interpretation } = getVastuGradeAndMessage();
                 // Send email only once when result is shown
                 if (emailStatus === 'idle') {
-                  sendResultsEmail(grade, Math.floor((Object.values(answers).filter(ans => ans === 'Yes').length / Object.values(answers).filter(ans => ans !== 'Not Applicable').length) * 100));
+                  sendResultsEmail(grade, scorePercent);
                 }
-                return message;
+                return (
+                  <div>
+                    <div className="mb-2 font-semibold text-lg">✅ You answered {totalAnswered} questions.</div>
+                    <div className="mb-2">Your score: {userScore}/{totalAnswered} = {scorePercent}%</div>
+                    <div className="mb-4 font-bold">Grade: {grade}</div>
+                    {interpretation}
+                  </div>
+                );
               })()}
             </div>
             {emailStatus === 'loading' && <div className="text-yellow-600 mb-4">Sending your result to our team...</div>}

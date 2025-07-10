@@ -332,9 +332,9 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               className="inline-block"
             >
-              <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] text-white px-8 py-3 text-lg">
+              <Link href="/contact" className="bg-[#7a2323] hover:bg-[#5a1a1a] text-white px-8 py-3 text-lg rounded-md inline-flex items-center justify-center font-medium transition-colors duration-200">
                 Contact Us Now
-              </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
