@@ -31,7 +31,7 @@ export const courses: Course[] = [
     rating: 4.9,
     students: 1250,
     featured: true,
-    instructor: "Dr. Rajesh Sharma",
+    instructor: "Neena S Arora",
     saveAmount: "₹45,993"
   },
   {
@@ -47,7 +47,7 @@ export const courses: Course[] = [
     category: "vastu",
     rating: 4.8,
     students: 780,
-    instructor: "Prof. Amita Verma"
+    instructor: "Neena S Arora"
   },
   {
     id: "effective-parenting-through-vastu",
@@ -62,7 +62,7 @@ export const courses: Course[] = [
     category: "vastu",
     rating: 4.7,
     students: 950,
-    instructor: "Smt. Priya Agarwal"
+    instructor: "Neena S Arora"
   },
   {
     id: "pendulum-dowsing-foundation-course",
@@ -77,7 +77,7 @@ export const courses: Course[] = [
     category: "dowsing",
     rating: 4.8,
     students: 820,
-    instructor: "Mr. Vikram Mehta"
+    instructor: "Neena S Arora"
   },
   {
     id: "pendulum-dowsing-course-level-2",
@@ -92,7 +92,37 @@ export const courses: Course[] = [
     category: "dowsing",
     rating: 4.9,
     students: 490,
-    instructor: "Mrs. Sunita Kapoor"
+    instructor: "Neena S Arora"
+  },
+  {
+    id: "pendulum-dowsing-course-level-3",
+    title: "Pendulum Dowsing Course Level 3",
+    subtitle: "Expert Dowsing & Energy Mastery",
+    description: "Take your dowsing skills to the next level with advanced energy mapping, healing, and professional applications.",
+    price: "₹9,999",
+    duration: "6 months access",
+    lessons: "6 modules",
+    localImage: "/images/courses/dowsing-level3.jpg",
+    remoteImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1470&auto=format&fit=crop",
+    category: "dowsing",
+    rating: 4.9,
+    students: 320,
+    instructor: "Neena S Arora"
+  },
+  {
+    id: "pendulum-dowsing-course-level-4",
+    title: "Pendulum Dowsing Course Level 4",
+    subtitle: "Master Dowsing & Professional Practice",
+    description: "Master the art of pendulum dowsing for professional and healing purposes, with real-world case studies and expert guidance.",
+    price: "₹11,999",
+    duration: "6 months access",
+    lessons: "7 modules",
+    localImage: "/images/courses/dowsing-level4.jpg",
+    remoteImage: "https://images.unsplash.com/photo-1464983953574-0892a716854b?q=80&w=1470&auto=format&fit=crop",
+    category: "dowsing",
+    rating: 5.0,
+    students: 150,
+    instructor: "Neena S Arora"
   }
 ];
 

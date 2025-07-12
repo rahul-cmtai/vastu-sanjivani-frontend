@@ -216,7 +216,7 @@ export function Navbar() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link href="/students" className="text-sm font-medium text-white hover:text-yellow-300 transition-colors relative group">
-              <span>Students</span>
+              <span>Our Achievers</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
             </Link>
             <Link href="/contact" className="text-sm font-medium text-white hover:text-yellow-300 transition-colors relative group">
@@ -363,7 +363,7 @@ export function Navbar() {
             className="block py-3 text-white font-medium hover:text-yellow-300"
             onClick={() => setIsOpen(false)}
           >
-            Students
+            Our Achievers
           </Link>
           <Link 
             href="/contact" 

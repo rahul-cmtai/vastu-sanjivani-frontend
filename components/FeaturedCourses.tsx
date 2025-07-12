@@ -4,12 +4,12 @@ const courses = [
   {
     title: "Vastu Foundation Course",
     desc: "Learn the basics of Vastu Shastra and how to apply them in daily life.",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" // home/architecture/zen
+    img: "/images/home/vastu-foundation.jpg" // home/architecture/zen
   },
   {
     title: "Pendulum Dowsing",
     desc: "Master the art of dowsing for energy balancing and space clearing.",
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" // pendulum/energy
+    img: "/images/home/pendulum-dowsing.jpg" // pendulum/energy
   },
   {
     title: "Numerology Essentials",

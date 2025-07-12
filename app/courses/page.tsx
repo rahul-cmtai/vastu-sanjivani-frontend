@@ -209,7 +209,7 @@ export default function Courses() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between pt-3 border-t">
-                  <div className="font-bold text-lg text-[#7a2323]">{course.price}</div>
+                  {/* <div className="font-bold text-lg text-[#7a2323]">{course.price}</div> */}
                   {course.instructor && (
                     <div className="text-sm text-gray-500">By {course.instructor}</div>
                   )}
