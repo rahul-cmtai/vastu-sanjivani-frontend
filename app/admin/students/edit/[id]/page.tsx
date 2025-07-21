@@ -43,10 +43,10 @@ interface StudentForm {
   coverImageFile?: File;
 }
 
-export default function EditStudentPage({ params }: { params: { id: string } }) {
+export default function EditStudentPage({ params }: { params: any }) {
   const router = useRouter();
-  // Use React.use to unwrap params
-  const resolvedParams = use(params);
+  // Use React.use() with a type assertion for Next.js 15.x
+  const resolvedParams = use(params as any) as { id: string };
   const studentId = resolvedParams.id;
   
   const [form, setForm] = useState<StudentForm>({
