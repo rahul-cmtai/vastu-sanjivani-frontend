@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { 
   ChevronDown, 
   Menu,
@@ -82,7 +83,13 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-white flex items-center">
             <span className="relative">
-              Vaastu Sanjivanii
+              <Image 
+                src="/logo.png" 
+                alt="Vaastu Sanjivanii Logo" 
+                width={80} 
+                height={50} 
+                className="object-contain"
+              />
               <motion.span 
                 className="absolute -bottom-1 left-0 w-full h-0.5 bg-yellow-300" 
                 initial={{ width: 0 }}
@@ -374,9 +381,11 @@ export function Navbar() {
             Contact
           </Link>
           <div className="py-3">
-            <Button className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-medium shadow-lg">
-              Enquire Now
-            </Button>
+            <Link href="/contact">
+              <Button className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-medium shadow-lg">
+                Enquire Now
+              </Button>
+            </Link>
           </div>
         </div>
       </motion.div>
