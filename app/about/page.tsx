@@ -347,7 +347,7 @@ export default function About() {
               </div>
               <div className="h-40 w-full rounded-lg mb-6 overflow-hidden">
                 <Image 
-                  src="https://images.unsplash.com/photo-1507894233425-dcb186dd688c?q=80&w=2070" 
+                  src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=1170&auto=format&fit=crop" 
                   alt="Astro Vastu Remedies" 
                   width={400}
                   height={250}
@@ -452,7 +452,7 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section ref={teamRef} className="py-20 bg-white dark:bg-[#6a1d1d]/90">
+      {/* <section ref={teamRef} className="py-20 bg-white dark:bg-[#6a1d1d]/90">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -510,7 +510,7 @@ export default function About() {
             })}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-[#7a2323] to-[#5a1a1a] text-white relative overflow-hidden">

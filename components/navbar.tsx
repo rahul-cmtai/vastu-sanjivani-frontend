@@ -58,8 +58,7 @@ export function Navbar() {
 
   // Services links for dropdown
   const serviceLinks = [
-    { href: "/services/residential-vastu", label: "Residential Vastu", icon: <Home size={18} className="mr-2" /> },
-    { href: "/services/commercial-vastu", label: "Commercial Vastu", icon: <Building size={18} className="mr-2" /> },
+    { href: "/services/vastu-consultancy", label: "Vastu Consultancy", icon: <Building size={18} className="mr-2" /> },
     { href: "/services/astro-vastu-remedies", label: "Astro Vastu Remedies", icon: <Gem size={18} className="mr-2" /> },
     { href: "/services/numerology-solutions", label: "Numerology Solutions", icon: <Gem size={18} className="mr-2" /> },
   ];
@@ -71,6 +70,8 @@ export function Navbar() {
     { href: "/courses/effective-parenting-through-vastu", label: "Effective Parenting Through Vastu" },
     { href: "/courses/pendulum-dowsing-foundation-course", label: "Pendulum Dowsing Foundation Course" },
     { href: "/courses/pendulum-dowsing-course-level-2", label: "Pendulum Dowsing Course Level 2" },
+    { href: "https://achieverslifestyle.com/", label: "Pendulum Dowsing Course Level 3" },
+    { href: "https://achieverslifestyle.com/", label: "Pendulum Dowsing Course Level 4" },
   ];
 
   return (

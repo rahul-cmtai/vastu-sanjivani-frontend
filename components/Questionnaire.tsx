@@ -71,8 +71,8 @@ const optionalIndices = questions
 // Helper: scoring map
 const answerToPoint = (answer: string) => {
   // Accept synonyms for future extensibility
-  if (["no", "rarely", "sometimes", "occasionally"].includes(answer.toLowerCase())) return 1;
-  if (["yes", "frequently"].includes(answer.toLowerCase())) return 0;
+  if (["no", "rarely", "sometimes", "occasionally"].includes(answer.toLowerCase())) return 0;
+  if (["yes", "frequently"].includes(answer.toLowerCase())) return 1;
   return null; // Not Applicable or skipped
 };
 
@@ -127,7 +127,7 @@ export function VastuQuestionnaire() {
       const i = Number(idx);
       // If optional and skipped, ignore
       if (optionalIndices.includes(i) && (!ans || ans === "Not Applicable")) return false;
-      // If not answered at all, ignore
+      // If not answered at all or skipped with "Not Applicable", ignore
       if (!ans || ans === "Not Applicable") return false;
       return true;
     });

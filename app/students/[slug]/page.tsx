@@ -250,7 +250,7 @@ export default function StudentPage({ params }: { params: Promise<{ slug: string
                 <Book size={16} className="inline-block mr-2" />
                 Education
               </button>
-              <button 
+              {/* <button 
                 className={`px-6 py-4 text-sm font-medium transition-colors border-b-2 ${
                   activeTab === 'projects' 
                     ? 'border-[#7a2323] dark:border-yellow-300 text-[#7a2323] dark:text-yellow-300' 
@@ -260,7 +260,7 @@ export default function StudentPage({ params }: { params: Promise<{ slug: string
               >
                 <Briefcase size={16} className="inline-block mr-2" />
                 Projects
-              </button>
+              </button> */}
               <button 
                 className={`px-6 py-4 text-sm font-medium transition-colors border-b-2 ${
                   activeTab === 'testimonials' 
@@ -341,7 +341,7 @@ export default function StudentPage({ params }: { params: Promise<{ slug: string
             )}
             
             {/* Projects Tab */}
-            {activeTab === 'projects' && (
+            {/* {activeTab === 'projects' && (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -381,7 +381,7 @@ export default function StudentPage({ params }: { params: Promise<{ slug: string
                   </div>
                 )}
               </motion.div>
-            )}
+            )} */}
             
             {/* Testimonials Tab */}
             {activeTab === 'testimonials' && (

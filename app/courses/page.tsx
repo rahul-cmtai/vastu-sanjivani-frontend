@@ -124,7 +124,7 @@ export default function Courses() {
                     <span className="block text-gray-500 text-sm">Price</span>
                     <span className="text-2xl font-bold text-[#7a2323]">{featuredCourse.price}</span>
                   </div>
-                  <Link href={`/courses/${featuredCourse.id}`}>
+                  <Link href={featuredCourse.id === "pendulum-dowsing-course-level-3" || featuredCourse.id === "pendulum-dowsing-course-level-4" ? "https://achieverslifestyle.com/" : `/courses/${featuredCourse.id}`} target={featuredCourse.id === "pendulum-dowsing-course-level-3" || featuredCourse.id === "pendulum-dowsing-course-level-4" ? "_blank" : "_self"}>
                     <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] flex items-center">
                       Learn More <ChevronRight className="h-4 w-4 ml-1" />
                     </Button>
@@ -180,7 +180,7 @@ export default function Courses() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 w-full">
-                    <Link href={`/courses/${course.id}`} className="w-full">
+                    <Link href={course.id === "pendulum-dowsing-course-level-3" || course.id === "pendulum-dowsing-course-level-4" ? "https://achieverslifestyle.com/" : `/courses/${course.id}`} className="w-full" target={course.id === "pendulum-dowsing-course-level-3" || course.id === "pendulum-dowsing-course-level-4" ? "_blank" : "_self"}>
                       <Button className="bg-[#7a2323] hover:bg-[#5a1a1a] w-full">
                         View Details
                       </Button>

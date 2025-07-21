@@ -310,7 +310,7 @@ export default function VastuProfessionalCourse() {
                 <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer" className="block h-full">
                   <div className="p-5">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">{module.title}</h3>
-                    <div className="text-[#7a2323] text-sm mb-3">Individual Price: {module.price}</div>
+                    {/* <div className="text-[#7a2323] text-sm mb-3">Individual Price: {module.price}</div> */}
                     <ul className="space-y-1">
                       {module.content.slice(0, 2).map((item, i) => (
                         <li key={i} className="flex items-start text-sm text-gray-600">
@@ -340,7 +340,7 @@ export default function VastuProfessionalCourse() {
                 <a href="https://achieverslifestyle.com/" target="_blank" rel="noopener noreferrer" className="block h-full">
                   <div className="p-5">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">{module.title}</h3>
-                    <div className="text-[#7a2323] text-sm mb-3">Individual Price: {module.price}</div>
+                    {/* <div className="text-[#7a2323] text-sm mb-3">Individual Price: {module.price}</div> */}
                     <ul className="space-y-1">
                       {module.content.slice(0, 2).map((item, i) => (
                         <li key={i} className="flex items-start text-sm text-gray-600">
