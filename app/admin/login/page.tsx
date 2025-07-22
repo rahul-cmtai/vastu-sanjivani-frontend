@@ -17,37 +17,35 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-        credentials: 'include'
+        credentials: "include"
       })
 
-      const data = await response.json()
+      const data = await res.json()
 
-      if (!response.ok) {
+      if (!res.ok) {
         throw new Error(data.message || "Login failed")
       }
 
-      // Save token and user data
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      // ✅ Save token + user and redirect
+      if (typeof window !== "undefined") {
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("user", JSON.stringify(data.user))
+        router.push("/admin/dashboard")
+      }
 
-      // Always redirect to admin dashboard after successful login
-      router.push("/admin/dashboard")
-      
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to login"
-      setError(errorMessage)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Login error"
+      setError(msg)
     } finally {
       setIsLoading(false)
     }
