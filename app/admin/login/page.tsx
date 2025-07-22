@@ -21,54 +21,37 @@ export default function LoginPage() {
     e.preventDefault()
     setError("")
     setIsLoading(true)
-    console.log("1. हैंडल सबमिट शुरू हुआ...");
 
     try {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`;
-      console.log("2. इस API पर रिक्वेस्ट भेजा जा रहा है:", apiUrl);
-
-      const res = await fetch(apiUrl, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
         credentials: "include"
-      });
+      })
 
-      console.log("3. API से रिस्पॉन्स मिला। स्टेटस:", res.status);
-
-      const data = await res.json();
-      console.log("4. JSON डेटा पार्स किया गया:", data);
+      const data = await res.json()
 
       if (!res.ok) {
-        console.error("5. रिस्पॉन्स ठीक नहीं है (res.ok is false)। एरर थ्रो किया जा रहा है।");
-        throw new Error(data.message || "लॉगिन फेल हो गया");
+        throw new Error(data.message || "Login failed")
       }
 
-      console.log("6. रिस्पॉन्स ठीक है। टोकन और यूजर की जाँच हो रही है...");
-
       if (data.success && data.token && data.user) {
-        console.log("7. टोकन और यूजर मिला। localStorage में सेव किया जा रहा है...");
         if (typeof window !== "undefined") {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          console.log("8. डेटा localStorage में सेव हो गया। अब रीडायरेक्ट किया जा रहा है...");
+          localStorage.setItem("token", data.token)
+          localStorage.setItem("user", JSON.stringify(data.user))
           
-          router.push("/admin/blog");
-          
-          console.log("9. router.push('/admin/blog') कॉल हो चुका है।");
+          // सबसे मज़बूत तरीका: सीधे पेज को रीडायरेक्ट करें
+          window.location.href = "/admin/blog";
         }
       } else {
-        console.error("10. सर्वर से मिले डेटा में टोकन या यूजर नहीं है।");
-        throw new Error("सर्वर से मिला रिस्पॉन्स अधूरा है।");
+        throw new Error(data.message || "Login response is invalid.")
       }
 
     } catch (err) {
-      console.error("11. CATCH ब्लॉक में एरर आया:", err);
-      const msg = err instanceof Error ? err.message : "लॉगिन में कोई अज्ञात एरर हुई";
-      setError(msg);
-    } finally {
-      setIsLoading(false);
-      console.log("12. FINALLY ब्लॉक एक्सेक्यूट हुआ।");
+      const msg = err instanceof Error ? err.message : "An unknown login error occurred"
+      setError(msg)
+      setIsLoading(false) // एरर आने पर लोडिंग बंद करें
     }
   }
 
