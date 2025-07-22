@@ -38,6 +38,9 @@ export default function LoginPage() {
       localStorage.setItem("token", data.token)
       localStorage.setItem("user", JSON.stringify(data.user))
       router.push("/admin/dashboard")
+      setTimeout(() => {
+        window.location.href = "/admin/dashboard"
+      }, 500)
 
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "An unexpected error occurred"
