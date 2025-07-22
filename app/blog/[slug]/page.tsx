@@ -1,3 +1,5 @@
+"use client";
+import { use } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,8 +30,9 @@ async function getBlog(slug: string): Promise<Blog | null> {
   }
 }
 
-export default async function BlogDetailsPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlog(params.slug);
+export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
+  const blog = await getBlog(slug);
   if (!blog) return notFound();
 
   return (
