@@ -40,7 +40,7 @@ export default function LoginPage() {
       if (typeof window !== "undefined") {
         localStorage.setItem("token", data.token)
         localStorage.setItem("user", JSON.stringify(data.user))
-        router.push("/admin/dashboard")
+        router.push("/admin/blog")
       }
 
     } catch (err) {
