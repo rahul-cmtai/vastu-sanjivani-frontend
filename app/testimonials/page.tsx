@@ -65,6 +65,47 @@ interface StudentSuccessStory {
   updatedAt: string;
 }
 
+interface YouTubeVideo {
+  id: string;
+  title: string;
+  thumbnail: string;
+  publishedAt: string;
+}
+
+// Static YouTube video data to avoid API key exposure
+const staticYoutubeVideos: YouTubeVideo[] = [
+  {
+    id: "Wl_VXgYPLXM",
+    title: "Vastu Sanjivanii Testimonial - Client Success Story",
+    thumbnail: "https://i.ytimg.com/vi/Wl_VXgYPLXM/hqdefault.jpg",
+    publishedAt: "2023-06-15T10:30:00Z"
+  },
+  {
+    id: "eTqDJRE_QYU",
+    title: "How Vastu Changed My Life - Client Experience",
+    thumbnail: "https://i.ytimg.com/vi/eTqDJRE_QYU/hqdefault.jpg",
+    publishedAt: "2023-07-20T14:15:00Z"
+  },
+  {
+    id: "oVxOMOA82Rk",
+    title: "Business Success After Vastu Consultation",
+    thumbnail: "https://i.ytimg.com/vi/oVxOMOA82Rk/hqdefault.jpg",
+    publishedAt: "2023-08-05T09:45:00Z"
+  },
+  {
+    id: "YQHsXMglC9A",
+    title: "Home Transformation Journey with Vastu Principles",
+    thumbnail: "https://i.ytimg.com/vi/YQHsXMglC9A/hqdefault.jpg",
+    publishedAt: "2023-09-12T11:20:00Z"
+  },
+  {
+    id: "JGwWNGJdvx8",
+    title: "Vastu Sanjivanii - Client Review and Experience",
+    thumbnail: "https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg",
+    publishedAt: "2023-10-18T16:30:00Z"
+  }
+];
+
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -74,6 +115,10 @@ export default function Testimonials() {
   const [studentSuccessStories, setStudentSuccessStories] = useState<StudentSuccessStory[]>([]);
   const [isLoadingStories, setIsLoadingStories] = useState(true);
   const [errorStories, setErrorStories] = useState<string | null>(null);
+  const [youtubeVideos, setYoutubeVideos] = useState<YouTubeVideo[]>(staticYoutubeVideos);
+  const [isLoadingVideos, setIsLoadingVideos] = useState(false);
+  const [errorVideos, setErrorVideos] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(staticYoutubeVideos[0]?.id || null);
   
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -115,6 +160,9 @@ export default function Testimonials() {
       }
     };
     fetchStories();
+
+    // No need to fetch YouTube videos anymore as we're using static data
+    // This avoids exposing API keys in client-side code
   }, []);
 
   const handlePrevClient = () => {
@@ -461,28 +509,157 @@ export default function Testimonials() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-[#7a2323] mb-4">
-              Featured Video Testimonial
+              Featured Video Testimonials
             </h2>
             <div className="h-1 w-20 bg-[#7a2323]/60 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-xl mx-auto">
               Hear directly from our clients about their life-changing experiences with Vastu Sanjivanii.
             </p>
           </div>
-          <div className="flex justify-center">
-            <div className="w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-lg">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/videoseries?list=PLG7nWCt69RhI3_B_0y1WeyqDVsZUk6VAm" 
-                title="YouTube playlist player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
+
+          {/* Video Gallery */}
+          {(() => {
+            const playlistVideos = [
+              { id: "CR8PWwWuRDU", title: "Testimonial Video 1", thumbnail: "https://i.ytimg.com/vi/CR8PWwWuRDU/hqdefault.jpg" },
+              { id: "OoMA4YbnZgE", title: "Testimonial Video 2", thumbnail: "https://i.ytimg.com/vi/OoMA4YbnZgE/hqdefault.jpg" },
+              { id: "abDcGFXUivA", title: "Testimonial Video 3", thumbnail: "https://i.ytimg.com/vi/abDcGFXUivA/hqdefault.jpg" },
+              { id: "NwZoL3vXvQM", title: "Testimonial Video 4", thumbnail: "https://i.ytimg.com/vi/NwZoL3vXvQM/hqdefault.jpg" },
+              { id: "H4qmUYIWIFg", title: "Testimonial Video 5", thumbnail: "https://i.ytimg.com/vi/H4qmUYIWIFg/hqdefault.jpg" },
+              { id: "kTqrVYk4AGo", title: "Testimonial Video 6", thumbnail: "https://i.ytimg.com/vi/kTqrVYk4AGo/hqdefault.jpg" },
+              { id: "FIjBA8Ld1Is", title: "Testimonial Video 7", thumbnail: "https://i.ytimg.com/vi/FIjBA8Ld1Is/hqdefault.jpg" },
+              { id: "wXourFvu3g4", title: "Testimonial Video 8", thumbnail: "https://i.ytimg.com/vi/wXourFvu3g4/hqdefault.jpg" },
+              { id: "QYsQOV1zry8", title: "Testimonial Video 9", thumbnail: "https://i.ytimg.com/vi/QYsQOV1zry8/hqdefault.jpg" },
+              { id: "R5DNLhUN4iQ", title: "Testimonial Video 10", thumbnail: "https://i.ytimg.com/vi/R5DNLhUN4iQ/hqdefault.jpg" },
+              { id: "oSd7SFLeO1c", title: "Testimonial Video 11", thumbnail: "https://i.ytimg.com/vi/oSd7SFLeO1c/hqdefault.jpg" },
+              { id: "eOgcD-0ru5g", title: "Testimonial Video 12", thumbnail: "https://i.ytimg.com/vi/eOgcD-0ru5g/hqdefault.jpg" },
+              { id: "X1qT3m6xCvw", title: "Testimonial Video 13", thumbnail: "https://i.ytimg.com/vi/X1qT3m6xCvw/hqdefault.jpg" },
+              { id: "6DJsG795DNM", title: "Testimonial Video 14", thumbnail: "https://i.ytimg.com/vi/6DJsG795DNM/hqdefault.jpg" },
+              { id: "jbIxsG-q1Y8", title: "Testimonial Video 15", thumbnail: "https://i.ytimg.com/vi/jbIxsG-q1Y8/hqdefault.jpg" },
+              { id: "ARpnEFZHpeM", title: "Testimonial Video 16", thumbnail: "https://i.ytimg.com/vi/ARpnEFZHpeM/hqdefault.jpg" },
+              { id: "yu8mI9EgPek", title: "Testimonial Video 17", thumbnail: "https://i.ytimg.com/vi/yu8mI9EgPek/hqdefault.jpg" },
+              { id: "3xVwnfZg130", title: "Testimonial Video 18", thumbnail: "https://i.ytimg.com/vi/3xVwnfZg130/hqdefault.jpg" },
+              { id: "OkpHx9W6Gi0", title: "Testimonial Video 19", thumbnail: "https://i.ytimg.com/vi/OkpHx9W6Gi0/hqdefault.jpg" },
+              { id: "Hjgh6m_V1a8", title: "Testimonial Video 20", thumbnail: "https://i.ytimg.com/vi/Hjgh6m_V1a8/hqdefault.jpg" },
+            ];
+            const [selectedVideo, setSelectedVideo] = useState(playlistVideos[0].id);
+            return (
+              <div>
+                {/* Main Video Player */}
+                <div className="flex justify-center mb-8">
+                  <div className="w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={`https://www.youtube.com/embed/${selectedVideo}`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
+                {/* Thumbnails Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                  {playlistVideos.map((video, idx) => (
+                    <div
+                      key={video.id}
+                      className={`cursor-pointer rounded-lg overflow-hidden shadow transition-transform hover:-translate-y-1 border-2 ${selectedVideo === video.id ? 'border-[#7a2323]' : 'border-transparent'}`}
+                      onClick={() => setSelectedVideo(video.id)}
+                    >
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-3 bg-white">
+                        <h4 className="text-sm font-semibold text-[#7a2323] line-clamp-2">{video.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </section>
+
+      {/* Health Vastu Video Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#7a2323] mb-4">
+              Health Vastu
+            </h2>
+            <div className="h-1 w-20 bg-[#7a2323]/60 mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-xl mx-auto">
+              Explore our Health Vastu video testimonials and insights.
+            </p>
           </div>
+
+          {/* Health Vastu Video Gallery */}
+          {(() => {
+            const healthVastuVideos = [
+              { id: "TxRGx_1C6vk", title: "Health Vastu Video 1", thumbnail: "https://i.ytimg.com/vi/TxRGx_1C6vk/hqdefault.jpg" },
+              { id: "H_64RL6dp80", title: "Health Vastu Video 2", thumbnail: "https://i.ytimg.com/vi/H_64RL6dp80/hqdefault.jpg" },
+              { id: "Pl5ACUXYe44", title: "Health Vastu Video 3", thumbnail: "https://i.ytimg.com/vi/Pl5ACUXYe44/hqdefault.jpg" },
+              { id: "JSi5ESAf95g", title: "Health Vastu Video 4", thumbnail: "https://i.ytimg.com/vi/JSi5ESAf95g/hqdefault.jpg" },
+              { id: "6I1_bGCFBLs", title: "Health Vastu Video 5", thumbnail: "https://i.ytimg.com/vi/6I1_bGCFBLs/hqdefault.jpg" },
+              { id: "9DBzY3nGwew", title: "Health Vastu Video 6", thumbnail: "https://i.ytimg.com/vi/9DBzY3nGwew/hqdefault.jpg" },
+              { id: "BRT-X-s2b6s", title: "Health Vastu Video 7", thumbnail: "https://i.ytimg.com/vi/BRT-X-s2b6s/hqdefault.jpg" },
+              { id: "bnC_fwfCubk", title: "Health Vastu Video 8", thumbnail: "https://i.ytimg.com/vi/bnC_fwfCubk/hqdefault.jpg" },
+              { id: "KpLNs89Ybso", title: "Health Vastu Video 9", thumbnail: "https://i.ytimg.com/vi/KpLNs89Ybso/hqdefault.jpg" },
+              { id: "Jylo4q_niBQ", title: "Health Vastu Video 10", thumbnail: "https://i.ytimg.com/vi/Jylo4q_niBQ/hqdefault.jpg" },
+              { id: "T_F4Jk7UUuk", title: "Health Vastu Video 11", thumbnail: "https://i.ytimg.com/vi/T_F4Jk7UUuk/hqdefault.jpg" },
+              { id: "30N5x879hxg", title: "Health Vastu Video 12", thumbnail: "https://i.ytimg.com/vi/30N5x879hxg/hqdefault.jpg" },
+              { id: "WQcgwybuwm8", title: "Health Vastu Video 13", thumbnail: "https://i.ytimg.com/vi/WQcgwybuwm8/hqdefault.jpg" },
+              { id: "qUxCBYveV4A", title: "Health Vastu Video 14", thumbnail: "https://i.ytimg.com/vi/qUxCBYveV4A/hqdefault.jpg" },
+              { id: "nXBwMY0UD2U", title: "Health Vastu Video 15", thumbnail: "https://i.ytimg.com/vi/nXBwMY0UD2U/hqdefault.jpg" },
+              { id: "Qcdm8P3q-MI", title: "Health Vastu Video 16", thumbnail: "https://i.ytimg.com/vi/Qcdm8P3q-MI/hqdefault.jpg" },
+              { id: "NhOgfubex5w", title: "Health Vastu Video 17", thumbnail: "https://i.ytimg.com/vi/NhOgfubex5w/hqdefault.jpg" },
+            ];
+            const [selectedHealthVideo, setSelectedHealthVideo] = useState(healthVastuVideos[0].id);
+            return (
+              <div>
+                {/* Main Video Player */}
+                <div className="flex justify-center mb-8">
+                  <div className="w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={`https://www.youtube.com/embed/${selectedHealthVideo}`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
+                {/* Thumbnails Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                  {healthVastuVideos.map((video, idx) => (
+                    <div
+                      key={video.id}
+                      className={`cursor-pointer rounded-lg overflow-hidden shadow transition-transform hover:-translate-y-1 border-2 ${selectedHealthVideo === video.id ? 'border-[#7a2323]' : 'border-transparent'}`}
+                      onClick={() => setSelectedHealthVideo(video.id)}
+                    >
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="p-3 bg-white">
+                        <h4 className="text-sm font-semibold text-[#7a2323] line-clamp-2">{video.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 

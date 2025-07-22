@@ -40,7 +40,7 @@ export default function LoginPage() {
 
       // Save token and user data
       localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      localStorage.setItem("adminAuth", JSON.stringify(data.user))
 
       // Always redirect to admin dashboard after successful login
       router.push("/admin/dashboard")
