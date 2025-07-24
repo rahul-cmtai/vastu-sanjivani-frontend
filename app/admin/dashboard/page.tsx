@@ -8,7 +8,7 @@ export default function AdminDashboard() {
     { label: "Total Contacts", value: 0, icon: Users, color: "text-red-500" },
     { label: "New Contacts", value: 0, icon: FileText, color: "text-yellow-500" },
     { label: "Contacted", value: 0, icon: Star, color: "text-green-600" },
-    { label: "Services", value: 0, icon: PlusCircle, color: "text-orange-500" },
+    // { label: "Services", value: 0, icon: PlusCircle, color: "text-orange-500" },
   ])
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function AdminDashboard() {
       { label: "Total Contacts", value: totalContacts, icon: Users, color: "text-red-500" },
       { label: "New Contacts", value: newContacts, icon: FileText, color: "text-yellow-500" },
       { label: "Contacted", value: contacted, icon: Star, color: "text-green-600" },
-      { label: "Services", value: 0, icon: PlusCircle, color: "text-orange-500" },
+      // { label: "Services", value: 0, icon: PlusCircle, color: "text-orange-500" },
     ])
   }, [])
 

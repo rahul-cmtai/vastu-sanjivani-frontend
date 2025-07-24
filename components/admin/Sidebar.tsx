@@ -12,7 +12,7 @@ const navItems = [
   { href: "/admin/student-success-stories", label: "Student Success Stories", icon: Star },
   // { href: "/admin/leads", label: "Leads", icon: Users },
   { href: "/admin/contact", label: "Contact", icon: Users },
-  { href: "/admin/services", label: "Services", icon: Package },
+  // { href: "/admin/services", label: "Services", icon: Package },
   { href: "/admin/testimonials", label: "Testimonials", icon: Star },
   { href: "/admin/students", label: "Students", icon: UserPlus },
 ]
