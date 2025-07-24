@@ -88,14 +88,12 @@ export default function BlogPage() {
           throw new Error("API URL is not defined. Check your environment variables.");
         }
         
-        console.log("Fetching blogs from API");
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
         if (!response.ok) {
           throw new Error(`Failed to fetch blogs (Status: ${response.status})`);
         }
         
         const data = await response.json();
-        console.log("Blogs data received:", data);
         setBlogs(data.filter((b: Blog) => b.status === "Published"));
         setUseFallback(false);
       } catch (err: unknown) {
@@ -113,7 +111,6 @@ export default function BlogPage() {
   // Use fallback data if API request failed
   useEffect(() => {
     if (useFallback) {
-      console.log("Using fallback blog data for development");
       setBlogs(fallbackBlogs);
     }
   }, [useFallback]);

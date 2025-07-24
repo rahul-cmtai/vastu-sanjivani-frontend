@@ -62,8 +62,6 @@ export default function BlogDetailPage() {
         setIsLoading(true);
         setError(null);
         
-        console.log(`Fetching blog with slug: ${slug}`);
-        
         // Check if NEXT_PUBLIC_API_URL is defined
         if (!process.env.NEXT_PUBLIC_API_URL) {
           throw new Error("API URL is not defined. Check your environment variables.");
@@ -79,7 +77,6 @@ export default function BlogDetailPage() {
         }
         
         const data = await response.json();
-        console.log("Blog data received:", data);
         setBlog(data);
         setUseFallback(false);
       } catch (err: unknown) {
@@ -97,7 +94,6 @@ export default function BlogDetailPage() {
   // Use fallback data if API request failed and we're in development
   useEffect(() => {
     if (useFallback && slug) {
-      console.log("Using fallback blog data for development");
       setBlog({
         ...fallbackBlogData,
         slug: slug as string
