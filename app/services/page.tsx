@@ -70,19 +70,21 @@ const ServiceCard = ({ title, description, icon, link }: {
   link: string;
 }) => {
   return (
-    <motion.div 
-      className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-      variants={scaleIn}
-    >
-      <div className="w-16 h-16 bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center mb-5 shadow-md text-[#7a2323] dark:text-rose-300">
-        {icon}
-      </div>
-      <h3 className="text-2xl font-bold mb-3 text-[#7a2323] dark:text-white">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-300 mb-5">{description}</p>
-      <Link href={link} className="inline-flex items-center text-[#7a2323] dark:text-rose-300 font-semibold hover:underline">
-        Learn more <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
-    </motion.div>
+    <Link href={link} className="block group">
+      <motion.div 
+        className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group-hover:bg-gray-50 dark:group-hover:bg-gray-700"
+        variants={scaleIn}
+      >
+        <div className="w-16 h-16 bg-rose-100 dark:bg-rose-900/50 rounded-full flex items-center justify-center mb-5 shadow-md text-[#7a2323] dark:text-rose-300">
+          {icon}
+        </div>
+        <h3 className="text-2xl font-bold mb-3 text-[#7a2323] dark:text-white group-hover:text-[#5a1a1a] dark:group-hover:text-white">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-5">{description}</p>
+        <div className="inline-flex items-center text-[#7a2323] dark:text-rose-300 font-semibold group-hover:text-[#5a1a1a] dark:group-hover:text-rose-400">
+          Learn more <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+        </div>
+      </motion.div>
+    </Link>
   );
 };
 
@@ -115,7 +117,7 @@ export default function ServicesPage() {
       
       {/* --- Hero Section --- */}
       <div className="relative bg-gradient-to-b from-[#fdf2f2] to-gray-50 dark:from-[#310b0b] dark:to-gray-900">
-        <div className="container mx-auto flex flex-col items-center min-h-[70vh] px-4 pt-24 pb-12">
+        <div className="container mx-auto flex flex-col items-center min-h-[10vh] px-4 pt-24">
             <motion.div 
                 className="text-center max-w-4xl"
                 variants={staggerContainer}

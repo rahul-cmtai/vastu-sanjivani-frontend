@@ -156,63 +156,81 @@ const TestimonialCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-80 cursor-pointer overflow-hidden rounded-xl border p-4 mx-6",
+        "relative h-full w-64 md:w-80 cursor-pointer overflow-hidden rounded-xl border p-3 md:p-4 mx-3 md:mx-6",
         // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+        "border-gray-200 bg-white hover:bg-gray-50 shadow-lg",
         // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        "dark:border-gray-300 dark:bg-white dark:hover:bg-gray-50"
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <div className={`w-8 h-8 rounded-full ${color} bg-opacity-20 flex items-center justify-center`}>
-          <span className={`text-sm font-semibold ${color}`}>{initials}</span>
+        <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full ${color} bg-opacity-20 flex items-center justify-center`}>
+          <span className={`text-xs md:text-sm font-semibold ${color}`}>{initials}</span>
         </div>
         <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
+          <figcaption className="text-xs md:text-sm font-medium dark:text-white">
             {name}
           </figcaption>
           <p className="text-xs font-medium dark:text-white/40">{username}</p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm dark:text-white/80">{body}</blockquote>
+      <blockquote className="mt-2 text-xs md:text-sm dark:text-white/80 leading-relaxed">{body}</blockquote>
     </figure>
   );
 };
 
 export function TestimonialsMarquee() {
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 dark:from-[#7a2323]/90 dark:to-[#5a1a1a]">
-      <div className="container mx-auto px-4 mb-8">
-        <h2 className="text-center text-3xl md:text-4xl font-bold mb-4 text-[#7a2323] dark:text-white">
-          What Our Clients Say
-        </h2>
-        <div className="mx-auto h-1 w-20 rounded-full bg-[#7a2323]/60 dark:bg-white/60 mb-6"></div>
-        <p className="text-center text-gray-600 dark:text-white/80 max-w-2xl mx-auto mb-12">
-          Read what our clients have to say about our Vastu consultations and how it has transformed their lives and workspaces.
-        </p>
-      </div>
+    <section className="relative py-16 overflow-hidden">
+              {/* Background Image */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed'
+          }}
+        />
       
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-        <style jsx global>{`
-          .gap-marquee > div {
-            gap: 48px !important;
-          }
-          .marquee-wrapper:hover .marquee-content {
-            animation-play-state: paused;
-          }
-        `}</style>
-        <Marquee pauseOnHover className="mb-8 gap-marquee">
-          {firstRow.map((testimonial, idx) => (
-            <TestimonialCard key={`first-${idx}`} {...testimonial} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="gap-marquee">
-          {secondRow.map((testimonial, idx) => (
-            <TestimonialCard key={`second-${idx}`} {...testimonial} />
-          ))}
-        </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-gray-50 dark:from-[#7a2323]/90"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-gray-50 dark:from-[#7a2323]/90"></div>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#7a2323]/20 to-[#5a1a1a]/25"></div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 mb-8">
+          <h2 className="text-center text-3xl md:text-4xl font-bold mb-4 text-[#7a2323] dark:text-white">
+            What Our Clients Say
+          </h2>
+          <div className="mx-auto h-1 w-20 rounded-full bg-[#7a2323]/60 dark:bg-white/60 mb-6"></div>
+          <p className="text-center text-black/80 dark:text-white/80 max-w-2xl mx-auto mb-12">
+            Read what our clients have to say about our Vastu consultations and how it has transformed their lives and workspaces.
+          </p>
+        </div>
+      
+              <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <style jsx global>{`
+            .gap-marquee > div {
+              gap: 48px !important;
+            }
+            .marquee-wrapper:hover .marquee-content {
+              animation-play-state: paused;
+            }
+          `}</style>
+          <Marquee pauseOnHover className="mb-8 gap-marquee">
+            {firstRow.map((testimonial, idx) => (
+              <TestimonialCard key={`first-${idx}`} {...testimonial} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="gap-marquee">
+            {secondRow.map((testimonial, idx) => (
+              <TestimonialCard key={`second-${idx}`} {...testimonial} />
+            ))}
+          </Marquee>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#7a2323]/30 to-transparent"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#7a2323]/30 to-transparent"></div>
+        </div>
       </div>
     </section>
   );

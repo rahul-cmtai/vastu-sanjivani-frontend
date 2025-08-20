@@ -36,19 +36,23 @@ const floatingAnimation: Variants = {
 const services = [
   {
     title: "Vastu Consultancy",
-    description: "Get authentic and genuine Vastu Consultancy Services for your home and workplace."
+    description: "Get authentic and genuine Vastu Consultancy Services for your home and workplace.",
+    icon: "🏠"
   },
   {
     title: "Astro Vastu Remedies",
-    description: "Customized solutions using a blend of Vastu and astrology for various life problems."
+    description: "Customized solutions using a blend of Vastu and astrology for various life problems.",
+    icon: "⭐"
   },
   {
     title: "Numerology Solutions",
-    description: "Discover how numbers impact your life and get solutions for better growth and success."
+    description: "Discover how numbers impact your life and get solutions for better growth and success.",
+    icon: "🔢"
   },
   {
     title: "Vastu Compliant Designs",
-    description: "Get your Vastu compliant plan made for new or existing homes and offices."
+    description: "Get your Vastu compliant plan made for new or existing homes and offices.",
+    icon: "📐"
   }
 ];
 
@@ -168,74 +172,80 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Vastu Shastra Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ scale: 1.04, rotate: -2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
-              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
-            >
-              <motion.img 
-                src="/images/home/vastu.png" 
-                alt="Vastu Shastra" 
-                className="w-full h-60 object-cover rounded-md mb-6 bg-yellow-200"
-                style={{objectFit: 'cover'}}
-                initial={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
-              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Vastu Shastra</h3>
-              <p className="text-gray-600 text-center">
-                Vaastu Shastra is the science of constructing a building in such a way that helps the occupants achieve their desired results and targets
-              </p>
-            </motion.div>
-            {/* Astrology Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ scale: 1.04, rotate: 2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
-              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
-            >
-              <motion.img 
-                src="/images/home/astrology.png" 
-                alt="Astrology" 
-                className="w-full h-60 object-cover rounded-md mb-6"
-                style={{objectFit: 'cover'}}
-                initial={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
-              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Astrology</h3>
-              <p className="text-gray-600 text-center">
-                Astrology is the science of stars and planets and these stars and planets concern us in a meticulous way at every moment.
-              </p>
-            </motion.div>
+            <Link href="/services/vastu-consultancy" className="block group">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{ scale: 1.04, rotate: -2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+                className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer group-hover:bg-gray-50"
+              >
+                <motion.img 
+                  src="/images/home/vastu.png" 
+                  alt="Vastu Shastra" 
+                  className="w-full h-60 object-cover rounded-md mb-6 bg-yellow-200"
+                  style={{objectFit: 'cover'}}
+                  initial={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <h3 className="text-2xl font-semibold text-[#374151] mb-3">Vastu Shastra</h3>
+                <p className="text-gray-600 text-center">
+                  Vaastu Shastra is the science of constructing a building in such a way that helps the occupants achieve their desired results and targets
+                </p>
+              </motion.div>
+            </Link>
+            {/* Astro Vastu Remedies Card */}
+            <Link href="/services/astro-vastu-remedies" className="block group">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{ scale: 1.04, rotate: 2, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+                className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer group-hover:bg-gray-50"
+              >
+                <motion.img 
+                  src="/images/home/astrology.png" 
+                  alt="Astro Vastu Remedies" 
+                  className="w-full h-60 object-cover rounded-md mb-6"
+                  style={{objectFit: 'cover'}}
+                  initial={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <h3 className="text-2xl font-semibold text-[#374151] mb-3">Astro Vastu Remedies</h3>
+                <p className="text-gray-600 text-center">
+                  Customized solutions using a blend of Vastu and astrology for various life problems.
+                </p>
+              </motion.div>
+            </Link>
             {/* Numerology Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ scale: 1.04, rotate: -1.5, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
-              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
-            >
-              <motion.img 
-                src="/images/home/numerology.png" 
-                alt="Numerology" 
-                className="w-full h-60 object-cover rounded-md mb-6"
-                style={{objectFit: 'cover'}}
-                initial={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
-              <h3 className="text-2xl font-semibold text-[#374151] mb-3">Numerology</h3>
-              <p className="text-gray-600 text-center">
-                Numerology is the game of Numbers which has great impact on our lives. Each number is connected with a planet and gives...
-              </p>
-            </motion.div>
+            <Link href="/services/numerology-solutions" className="block group">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{ scale: 1.04, rotate: -1.5, boxShadow: "0 8px 32px 0 rgba(122,35,35,0.15)" }}
+                className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300 cursor-pointer group-hover:bg-gray-50"
+              >
+                <motion.img 
+                  src="/images/home/numerology.png" 
+                  alt="Numerology" 
+                  className="w-full h-60 object-cover rounded-md mb-6"
+                  style={{objectFit: 'cover'}}
+                  initial={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <h3 className="text-2xl font-semibold text-[#374151] mb-3">Numerology</h3>
+                <p className="text-gray-600 text-center">
+                  Numerology is the game of Numbers which has great impact on our lives. Each number is connected with a planet and gives...
+                </p>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
@@ -284,11 +294,11 @@ export default function Home() {
                     }}
                     className="h-full"
                   >
-                    <div className="w-12 h-12 bg-[#7a2323]/10 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl text-[#7a2323]">{index + 1}</span>
+                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                      <span className="text-3xl">{service.icon}</span>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-800">{service.title}</h3>
-                    <p className="text-gray-600">{service.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-800">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </motion.div>
                 </motion.div>
               </motion.div>

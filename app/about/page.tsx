@@ -137,14 +137,15 @@ export default function About() {
               className="md:w-1/2"
               variants={fadeInUp}
             >
-              <div className="rounded-3xl overflow-hidden shadow-2xl h-[500px] bg-gray-200 dark:bg-gray-700 w-full md:w-[90%] mx-auto relative transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(122,35,35,0.4)]">
-                <Image 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976" 
-                  alt="Neena S Arora - Founder of Vaastu Sanjivanii" 
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-700 ease-in-out hover:scale-105"
-                />
+                             <div className="rounded-3xl overflow-hidden shadow-2xl h-[500px] md:h-[600px] bg-gray-200 dark:bg-gray-700 w-full md:w-[90%] mx-auto relative transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(122,35,35,0.4)]">
+                 <Image 
+                   src="/images/founder.png" 
+                   alt="Neena S Arora - Founder of Vaastu Sanjivanii" 
+                   width={400}
+                   height={600}
+                   className="w-full h-full object-cover transition-transform duration-700 ease-in-out hover:scale-105"
+                   priority
+                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8">
                   <div className="text-white">
                     <h3 className="text-2xl font-bold">Neena S Arora</h3>
