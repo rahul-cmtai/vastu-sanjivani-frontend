@@ -47,7 +47,7 @@ export default function Contact() {
           style={{ y, opacity }}
         >
           <img
-            src="https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?q=80&w=2000&auto=format&fit=crop"
+            src="/images/contact.png"
             alt="Cosmic Background"
             className="w-full h-full object-cover object-center"
           />

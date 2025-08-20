@@ -231,7 +231,8 @@ export function Navbar() {
               <span>Contact</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300" />
             </Link>
-            <Button className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+           
+            <Button className="bg-[#77171B] hover:bg-[#5a1215] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               Enquire Now
             </Button>
           </div>
@@ -382,9 +383,9 @@ export function Navbar() {
           </Link>
           <div className="py-3">
             <Link href="/contact">
-              <Button className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-medium shadow-lg">
-                Enquire Now
-              </Button>
+            <Button className="bg-[#77171B] hover:bg-[#5a1215] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              Enquire Now
+            </Button>
             </Link>
           </div>
         </div>

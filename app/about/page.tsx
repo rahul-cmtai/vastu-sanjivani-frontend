@@ -192,7 +192,7 @@ export default function About() {
                   className="text-gray-600 dark:text-white/80"
                   variants={fadeIn}
                 >
-                  She is also the founder of Mystic Wizard, which is an educational firm that conducts solution and result oriented professional courses in occult sciences.
+                  She is also the founder of Achievers Lifestyle, which is an educational firm that conducts solution and result oriented professional courses in occult sciences.
                 </motion.p>
               </div>
             </motion.div>
@@ -259,7 +259,7 @@ export default function About() {
               </div>
               <h3 className="text-xl font-bold mb-4 text-center text-[#7a2323] dark:text-white">Educational Excellence</h3>
               <p className="text-gray-600 dark:text-white/80 text-center">
-                Founder of Mystic Wizard offering professional courses in occult sciences.
+                Founder of Achievers Lifestyle offering professional courses in occult sciences.
               </p>
             </motion.div>
             
@@ -376,7 +376,7 @@ export default function About() {
               </div>
               <div className="h-40 w-full rounded-lg mb-6 overflow-hidden">
                 <Image 
-                  src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070" 
+                  src="/images/home/numerology.png" 
                   alt="Numerology Solutions" 
                   width={400}
                   height={250}
@@ -570,7 +570,7 @@ export default function About() {
                 <span className="text-2xl">📞</span>
                 <div className="text-left">
                   <p className="text-white/80 text-sm">Call us anytime</p>
-                  <p className="text-white font-medium">+91-98XXX-XXXXX</p>
+                  <p className="text-white font-medium">+91-9910558589</p>
                 </div>
               </div>
               
